@@ -31,6 +31,7 @@ public class RealTimeClimatesSystem {
     }
 }
 
+//Método para pegar os dados climaticos na API
 public static String getDadosClimaticos(String cidade) throws Exception {
     String apiKey = Files.readString(Paths.get("Api_Key.txt")).trim();
 
@@ -47,4 +48,37 @@ public static String getDadosClimaticos(String cidade) throws Exception {
     HttpResponse<String> response = cliente.send(request, HttpResponse.BodyHandlers.ofString());
 
     return response.body(); //retorna os dados metereológicos obtidos no site da API (Weather API)
+}
+
+//Método para imprimir os dados climáticos de forma organizada
+public static void imprimirDadosClimaticos(String dados) {
+    //System.out.println("Dados originais (JSON) obtidos no site meteorológico" + dados)
+
+    JSONObject dadosJson = new JSONObject(dados);
+    JSONObject informacoesMeteorologicas = dadosJson.getJSONObject("current");
+
+    // Extrai os dados da localização
+    String cidade = dadosJson.getJSONObject("location").getString("name");
+    String pais = dadosJson.getJSONObject("location").getString("country");
+
+    // Extrai os dados adicionais
+    String condicaoTempo = informacoesMeteorologicas.getJSONObject("condition").getString("text");
+    int umidade = informacoesMeteorologicas.getInt("humidity");
+    float velocidadeVento = informacoesMeteorologicas.getFloat("wind_kph");
+    float pressaoAtmosferica = informacoesMeteorologicas.getFloat("pressure_mb");
+    float sensacaoTermica = informacoesMeteorologicas.getFloat("feelslike_c");
+    float temperaturaAtual = informacoesMeteorologicas.getFloat("temp_c");
+
+    // Extrai a data e a hora da string retornada pela API
+    String dataHoraString = informacoesMeteorologicas.getString("last_updated");
+
+    // Imprime as informações atuais solicitadas
+    System.out.println("Informações Meteorológicas para " + cidade + ", " + pais);
+    System.out.println("Data e hora: " + dataHoraString);
+    System.out.println("Temperatura atual: " + temperaturaAtual + "°C");
+    System.out.println("Sensação térmica: " + sensacaoTermica + "°C");
+    System.out.println("Condição do tempo: " + condicaoTempo);
+    System.out.println("Umidade: " + umidade + "%");
+    System.out.println("Velocidade do vento: " + velocidadeVento + " km/h");
+    System.out.println("Pressão atmosférica: " + pressaoAtmosferica + " mb");
 }
