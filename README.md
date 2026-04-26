@@ -1,4 +1,4 @@
-# 🌤️ Weather Forecast CLI
+# 🌤️ Real Time Climates Information System
 
 Aplicação Java de linha de comando que consulta dados meteorológicos em tempo real de qualquer cidade do mundo, utilizando a [WeatherAPI](https://www.weatherapi.com/).
 
@@ -51,8 +51,9 @@ Pressão Atmosférica: 1020.0 mb
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/seu-usuario/weather-forecast-cli.git
-cd weather-forecast-cli
+git clone https://github.com/anderson-silvaa/real-time-climate-information-system.git
+
+cd real_time_climates_information_system
 ```
 
 2. Adicione sua chave de API no arquivo de configuração:
@@ -77,7 +78,7 @@ java -cp bin Main
 
 | Tecnologia | Descrição |
 |---|---|
-| Java 17 | Linguagem principal |
+| Java 22 | Linguagem principal |
 | WeatherAPI | API de dados meteorológicos |
 | HttpURLConnection | Requisições HTTP nativas do Java |
 | JSON | Parsing da resposta da API |
@@ -87,7 +88,7 @@ java -cp bin Main
 ## 📁 Estrutura do Projeto
 
 ```
-weather-forecast-cli/
+real_time_climates_information_system/
 │
 ├── src/
 │   ├── Main.java               # Ponto de entrada da aplicação
@@ -117,5 +118,5 @@ weather-forecast-cli/
 
 Feito com ☕ durante o curso de Java.
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/seu-perfil)
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/seu-usuario)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/anderson-silvas)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/anderson-silvaa)
