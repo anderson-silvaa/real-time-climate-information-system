@@ -5,6 +5,8 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 
@@ -27,4 +29,22 @@ public class RealTimeClimatesSystem {
             System.out.println(e.getMessage());
         }
     }
+}
+
+public static String getDadosClimaticos(String cidade) throws Exception {
+    String apiKey = Files.readString(Paths.get("Api_Key.txt")).trim();
+
+    String formataNomeCidade = URLEncoder.encode(cidade, StandardCharsets.UTF_8);
+    String apiUrl = "http://api.weatherapi.com/v1/current.json?key=" + apiKey + "&q=" + formataNomeCidade;
+    HttpRequest request = HttpRequest.newBuilder() //Começa a construção de uma nova solicitação HTTP
+        .uri(URI.create(apiUrl)) // Este método define o URI da solicitação HTTP
+        .build(); // Finaliza a construção da solicitação HTTP
+    
+    // Cria objeto enviar solicitações HTTP e receber respostas HTTP, para acessar o site da WeatherAPI
+    HttpClient cliente = HttpClient.newHttpClient();
+
+    // Envia requisições HTTP e recebe respostas HTTP - comunicação com o site da API
+    HttpResponse<String> response = cliente.send(request, HttpResponse.BodyHandlers.ofString());
+
+    return response.body(); //retorna os dados metereológicos obtidos no site da API (Weather API)
 }
