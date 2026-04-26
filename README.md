@@ -44,7 +44,7 @@ Pressão Atmosférica: 1020.0 mb
 
 ### Pré-requisitos
 
-- [Java JDK 17+](https://www.oracle.com/java/technologies/downloads/) instalado
+- [Java JDK 22+](https://www.oracle.com/java/technologies/downloads/) instalado
 - Chave de API gratuita da [WeatherAPI](https://www.weatherapi.com/)
 
 ### Passo a passo
@@ -52,25 +52,26 @@ Pressão Atmosférica: 1020.0 mb
 1. Clone o repositório:
 ```bash
 git clone https://github.com/anderson-silvaa/real-time-climate-information-system.git
-
-cd real_time_climates_information_system
+cd real_time_climate_information_system
 ```
 
-2. Adicione sua chave de API no arquivo de configuração:
+2. Crie o arquivo com a sua chave de API na raiz do projeto:
 ```
-src/config/config.properties
-API_KEY=sua_chave_aqui
+api-key.txt
+sua_chave_aqui
 ```
 
 3. Compile o projeto:
 ```bash
-javac -d bin src/**/*.java
+javac -cp lib/json-20230618.jar src/Main.java src/model/DadosClimaticos.java src/service/ServicoClimatico.java src/util/ImprimirDadosClimaticos.java -d bin
 ```
 
 4. Execute:
 ```bash
-java -cp bin Main
+java -cp "bin;lib/json-20230618.jar" src.Main
 ```
+
+> **Mac/Linux:** substitua `;` por `:` no comando de execução.
 
 ---
 
@@ -91,15 +92,21 @@ java -cp bin Main
 real_time_climate_information_system/
 │
 ├── src/
-│   └── Main.java          # Todo o código da aplicação
+│   ├── Main.java                          # Ponto de entrada da aplicação
+│   ├── model/
+│   │   └── DadosClimaticos.java           # Modelo de dados meteorológicos
+│   ├── service/
+│   │   └── ServicoClimatico.java          # Comunicação com a WeatherAPI
+│   └── util/
+│       └── ImprimirDadosClimaticos.java   # Exibição dos dados no terminal
 │
+├── bin/                                   # Classes compiladas (gerado automaticamente)
 ├── lib/
-│   └── json.jar           # Biblioteca org.json
+│   └── json-20230618.jar                  # Biblioteca org.json
 │
-├── api-key.txt            # Ignorado pelo .gitignore
+├── api-key.txt                            # Ignorado pelo .gitignore
 ├── .gitignore
 └── README.md
-
 ```
 
 ---
@@ -108,7 +115,8 @@ real_time_climate_information_system/
 
 - Consumo de APIs REST com Java puro
 - Parsing e manipulação de respostas JSON
-- Organização de projeto em camadas (model, service)
+- Organização de projeto em camadas (model, service, util)
+- Separação de responsabilidades em classes distintas
 - Boas práticas com variáveis de ambiente e configurações sensíveis
 
 ---
