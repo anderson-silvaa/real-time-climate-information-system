@@ -80,27 +80,26 @@ java -cp bin Main
 |---|---|
 | Java 22 | Linguagem principal |
 | WeatherAPI | API de dados meteorológicos |
-| HttpURLConnection | Requisições HTTP nativas do Java |
-| JSON | Parsing da resposta da API |
+| HttpClient | Requisições HTTP nativas do Java |
+| org.json | Parsing da resposta da API |
 
 ---
 
 ## 📁 Estrutura do Projeto
 
 ```
-real_time_climates_information_system/
+real_time_climate_information_system/
 │
 ├── src/
-│   ├── Main.java               # Ponto de entrada da aplicação
-│   ├── service/
-│   │   └── WeatherService.java # Comunicação com a API
-│   ├── model/
-│   │   └── WeatherData.java    # Modelo de dados meteorológicos
-│   └── config/
-│       └── config.properties   # Configurações (API Key)
+│   └── Main.java          # Todo o código da aplicação
 │
+├── lib/
+│   └── json.jar           # Biblioteca org.json
+│
+├── api-key.txt            # Ignorado pelo .gitignore
 ├── .gitignore
 └── README.md
+
 ```
 
 ---
